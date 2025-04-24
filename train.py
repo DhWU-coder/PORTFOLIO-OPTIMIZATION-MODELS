@@ -32,7 +32,13 @@ lstm_model.fit(
 # save model
 lstm_model.save('model/lstm/lstm.h5')
 
-transformer_model = build_transformer_model(X_train.shape[1], X_train.shape[2])
+transformer_model = build_transformer_model2(seq_length=X_train.shape[1],
+                                             n_features=X_train.shape[2],
+                                             block_num=2,  # 2
+                                             num_heads=16,  # 16
+                                             ff_dim=64,  # 64
+                                             dropout=0.2,  # 0.2
+                                             encoder_dropout=0.1)
 print("Training Transformer model...")
 transformer_model.fit(
     X_train, y_train,
